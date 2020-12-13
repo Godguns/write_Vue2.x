@@ -20,7 +20,6 @@ class Observer{
        let dep= new Dep()
         Object.defineProperty(obj,key,{
             get(){
-                console.log(">>>>>get>>>>>")
                 Dep.target && dep.addsub(Dep .target)
                 return val
             },

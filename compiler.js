@@ -32,15 +32,24 @@ class Compiler{
     }
     update(node,key,attrName){
         let updateFn= this[attrName+'Updater'];
-        updateFn && updateFn(node,this.vm[key])
+        updateFn && updateFn.call(this,node,this.vm[key],key)
     }
     //处理v -text
     textUpdater(node,value){
         node.textContent=value
+        new Watcher(this.vm,key,(newValue)=>{
+            node.textContent=newValue
+        })
     }
     //处理 v-model
-    modelUpdater(node,value){
-        node.value=value
+    modelUpdater(node,value,key){
+        node.value=value;
+        new Watcher(this.vm,key,(newValue)=>{
+            node.value=newValue
+        })
+        node.addEventListener('input',()=>{
+            this.vm[key]=node.value
+        })
     }
     //处理文本
     compileText(node){
