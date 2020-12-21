@@ -5,7 +5,7 @@ class Watcher{
         this.cb=cb;
             //把watcher对象记录到Dep的静态属性target
             Dep.target=this
-        this.oldValue =vm[key]
+        this.oldValue =vm[key]  //此处触发get
         Dep.target=null
     
 
