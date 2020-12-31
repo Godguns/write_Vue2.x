@@ -57,7 +57,6 @@ class Compiler{
        let reg=/\{\{(.+?)\}\}/
        let value =node.textContent;
        if(reg.test(value)){
-        console.log("~~~~~")
            let key=RegExp.$1.trim()
            node.textContent=value.replace(reg,this.vm[key])
            new Watcher(this.vm,key,(newValue)=>{
