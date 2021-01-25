@@ -20,7 +20,7 @@ class Observer{
        let dep= new Dep()
         Object.defineProperty(obj,key,{
             get(){
-                Dep.target && dep.addsub(Dep.target)
+                Dep.target && dep.addsub(Dep.target)//在编译的时候，触发target，将watcher的this添加在dep上
                 return val
             },
             set(newValue){
